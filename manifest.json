@@ -1,0 +1,12 @@
+{
+    "name": "Gated.so",
+    "start_url": "/",
+    "description": "Create and manage gated pages with NFT access",
+    "icons": [
+        {
+            "src": "/icon.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        }
+    ]
+}
