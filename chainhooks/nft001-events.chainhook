@@ -1,0 +1,34 @@
+name: nft001-events
+version: 1
+chain: stacks
+networks:
+  testnet:
+    if_this:
+      scope: contract_call
+      contract_identifier: ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.nft001
+      method: mint
+    then_that:
+      http_post:
+        url: http://localhost:3000/nft001-minted
+        body: |
+          {
+            "contract": "{{contract_identifier}}",
+            "method": "{{method}}",
+            "txid": "{{txid}}",
+            "recipient": "{{contract_call.recipient}}"
+          }
+  mainnet:
+    if_this:
+      scope: contract_call
+      contract_identifier: SP2PABAF9FTAJYNFZH93XENAJ8FVY99RRM50D2JG9.nft001
+      method: mint
+    then_that:
+      http_post:
+        url: https://api.gated.so/nft001-minted
+        body: |
+          {
+            "contract": "{{contract_identifier}}",
+            "method": "{{method}}",
+            "txid": "{{txid}}",
+            "recipient": "{{contract_call.recipient}}"
+          }

@@ -1,0 +1,36 @@
+name: commission-events
+version: 1
+chain: stacks
+networks:
+  testnet:
+    if_this:
+      scope: contract_call
+      contract_identifier: ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.example-commission
+      method: pay
+    then_that:
+      http_post:
+        url: http://localhost:3000/commission-paid
+        body: |
+          {
+            "contract": "{{contract_identifier}}",
+            "method": "{{method}}",
+            "txid": "{{txid}}",
+            "id": "{{contract_call.id}}",
+            "price": "{{contract_call.price}}"
+          }
+  mainnet:
+    if_this:
+      scope: contract_call
+      contract_identifier: SP2PABAF9FTAJYNFZH93XENAJ8FVY99RRM50D2JG9.example-commission
+      method: pay
+    then_that:
+      http_post:
+        url: https://api.gated.so/commission-paid
+        body: |
+          {
+            "contract": "{{contract_identifier}}",
+            "method": "{{method}}",
+            "txid": "{{txid}}",
+            "id": "{{contract_call.id}}",
+            "price": "{{contract_call.price}}"
+          }

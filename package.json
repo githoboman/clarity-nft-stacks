@@ -8,6 +8,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
+    "server": "node server.js",
     "test": "vitest run",
     "test:report": "vitest run -- --coverage --costs",
     "test:watch": "chokidar \"tests/**/*.ts\" \"contracts/**/*.clar\" -c \"npm run test:report\""
@@ -21,6 +22,7 @@
     "@stacks/network": "^7.3.1",
     "@stacks/transactions": "^7.3.1",
     "chokidar-cli": "^3.0.0",
+    "express": "^4.18.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "typescript": "^5.3.3",

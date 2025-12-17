@@ -1,0 +1,36 @@
+name: tipping-events
+version: 1
+chain: stacks
+networks:
+  testnet:
+    if_this:
+      scope: contract_call
+      contract_identifier: ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.tipping
+      method: tip
+    then_that:
+      http_post:
+        url: http://localhost:3000/tip-sent
+        body: |
+          {
+            "contract": "{{contract_identifier}}",
+            "method": "{{method}}",
+            "txid": "{{txid}}",
+            "recipient": "{{contract_call.recipient}}",
+            "amount": "1000000"
+          }
+  mainnet:
+    if_this:
+      scope: contract_call
+      contract_identifier: SP2PABAF9FTAJYNFZH93XENAJ8FVY99RRM50D2JG9.tipping
+      method: tip
+    then_that:
+      http_post:
+        url: https://api.gated.so/tip-sent
+        body: |
+          {
+            "contract": "{{contract_identifier}}",
+            "method": "{{method}}",
+            "txid": "{{txid}}",
+            "recipient": "{{contract_call.recipient}}",
+            "amount": "1000000"
+          }
