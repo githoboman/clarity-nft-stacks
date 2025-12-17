@@ -16,6 +16,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@hirosystems/chainhooks-client": "^1.0.0",
     "@hirosystems/clarinet-sdk": "^3.8.1",
     "@stacks/auth": "^7.3.1",
     "@stacks/connect": "^8.2.4",
