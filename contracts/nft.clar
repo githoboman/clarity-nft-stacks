@@ -104,4 +104,7 @@
 (define-read-only (get-token-uri (token-id uint))
     (ok (some (concat (concat (var-get base-uri) "{id}") ".json"))))
 
+(define-read-only (get-current-block-height)
+    (ok stacks-block-height))
+
 (define-map balances {address: principal} {balance: uint})
